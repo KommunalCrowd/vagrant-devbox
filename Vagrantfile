@@ -40,8 +40,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # the path on the guest to mount the folder. And the optional third
     # argument is a set of non-required options.
     # config.vm.synced_folder "../data", "/vagrant_data"
-    config.vm.synced_folder "src/", "/srv/source"
-    config.vm.synced_folder "docker/", "/srv/docker"
+    config.vm.synced_folder "src/", "/srv/source", type: 'nfs', :mount_options => ['nolock,vers=3,udp']
+    config.vm.synced_folder "docker/", "/srv/docker", type: 'nfs', :mount_options => ['nolock,vers=3,udp']
 
     # Provider-specific configuration so you can fine-tune various
     # backing providers for Vagrant. These expose provider-specific options.
@@ -54,6 +54,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # Use VBoxManage to customize the VM. For example to change memory:
         vb.memory = 512
         vb.cpus = 1
+
+        vb.check_guest_additions = false
+        vb.functional_vboxsf     = false
     end
     #
     # View the documentation for the provider you're using for more
