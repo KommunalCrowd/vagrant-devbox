@@ -58,6 +58,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.check_guest_additions = false
         vb.functional_vboxsf     = false
     end
+
+    #
+    config.vm.provision "shell", path: "provision.sh"
     #
     # View the documentation for the provider you're using for more
     # information on available options.
