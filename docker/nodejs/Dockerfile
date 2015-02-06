@@ -1,17 +1,24 @@
-FROM centos:centos6
-MAINTAINER "Marian Sievers"
-# replace this with your application's default port
-EXPOSE 1337
+FROM        centos:centos6
+MAINTAINER  "Marian Sievers"
 
-# Enable EPEL for Node.js
-RUN     rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-# Install Node.js and npm
-RUN     yum install -y npm
+EXPOSE      1337
+
+# Install software
+RUN         yum install -y tar gzip wget clang clang++ python
+
+# Install io.js
+RUN         mkdir /root/iojs
+RUN         wget https://iojs.org/dist/v1.1.0/iojs-v1.1.0-linux-x64.tar.gz
+RUN         tar -zxvf iojs-v1.1.0-linux-x64.tar.gz -C /root/iojs
+
+# add io.js to path
+RUN         echo "PATH=$PATH:/root/iojs/iojs-v1.1.0-linux-x64/bin" >> /root/.bashrc
 
 # install sails globally
-RUN     npm -g install sails
+RUN         source /root/.bashrc
+RUN         /root/iojs/iojs-v1.1.0-linux-x64/bin/npm -g install sails
 
 # go to /src
-WORKDIR  /src
+WORKDIR     /src
 
-CMD ["/bin/bash"]
+CMD         ["/bin/bash"]
