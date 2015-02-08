@@ -7,7 +7,7 @@ EXPOSE      1337
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Install software
-RUN yum -y update && yum clean all
+RUN         yum -y update && yum clean all
 RUN         yum install -y tar gzip wget && yum clean all
 
 # Install io.js
