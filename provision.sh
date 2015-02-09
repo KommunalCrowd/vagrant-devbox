@@ -4,8 +4,12 @@ echo "---------------------------------------"
 echo "====== Starting the provisioning ======"
 echo "---------------------------------------"
 
-# run docker container
-docker run -d -t -p 1337:1337 -v /srv/source:/src --name="iojs-dev" kommunalcrowd/iojs-dev:0.2
+# copy unitfiles to /etc/systemd/system
+sudo cp /srv/docker/unitfiles/*.service /etc/systemd/system/
+
+# start iojs-container
+sudo systemctl enable iojs.service
+sudo systemctl start iojs.service
 
 # delete symlink to .bashrc and make a real copy
 rm /home/core/.bashrc
