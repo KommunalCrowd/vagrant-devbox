@@ -4,18 +4,14 @@ echo "---------------------------------------"
 echo "====== Starting the provisioning ======"
 echo "---------------------------------------"
 
-# copy unitfiles to /etc/systemd/system
-sudo cp /srv/docker/unitfiles/*.service /etc/systemd/system/
+# update yum-repo
+yum -y update && yum clean all
+yum -y install epel-release && yum clean all
 
-# start iojs-container
-sudo systemctl enable iojs.service
-sudo systemctl start iojs.service
+yum -y install curl git
 
-# delete symlink to .bashrc and make a real copy
-rm /home/core/.bashrc
-cp /usr/share/skel/.bashrc /home/core/.bashrc
+# install docker
+yum -y install docker && yum clean all
 
-# add alias for sshing into container
-echo "alias nodessh='docker exec -i -t iojs-dev bash'" >> /home/core/.bashrc
-
-echo "Type 'nodessh' in CoreOS to SSH into container"
+# install fig
+curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
