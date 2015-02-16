@@ -1,10 +1,7 @@
 FROM        centos:centos7
 MAINTAINER  Marian Sievers <info@mariansievers.de>
 
-EXPOSE      1337
-
-# Install correct shell
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# EXPOSE      8080
 
 # Install software
 RUN         yum -y update && yum clean all
@@ -19,11 +16,7 @@ RUN         rm -f iojs-v1.1.0-linux-x64.tar.gz
 # add io.js to path
 RUN         echo "PATH=$PATH:/root/iojs/iojs-v1.1.0-linux-x64/bin" >> /root/.bashrc
 
-# install sails globally
-RUN         source /root/.bashrc
-RUN         /root/iojs/iojs-v1.1.0-linux-x64/bin/npm -g install sails
-
 # go to /src
-WORKDIR     /src
+WORKDIR     /src/KommunalCrowd
 
-CMD         ["/bin/bash"]
+CMD         /root/iojs/iojs-v1.1.0-linux-x64/bin/node app.js

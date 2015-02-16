@@ -6,7 +6,7 @@ webfrontend:
     ports:
         - "0.0.0.0:8080:8080"
     volumes:
-        - /srv/source:/usr/src/app
+        - /srv/source:/src
         - /logs:/logs
 db:
     image: mariadb
