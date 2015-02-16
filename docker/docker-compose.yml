@@ -1,0 +1,14 @@
+webfrontend:
+    build: ./nodejs
+    #image: iojs-dev
+    links:
+        - db
+    ports:
+        - "0.0.0.0:8080:8080"
+    volumes:
+        - /srv/source:/usr/src/app
+        - /logs:/logs
+db:
+    image: mariadb
+    environment:
+        MYSQL_ROOT_PASSWORD: 12345
