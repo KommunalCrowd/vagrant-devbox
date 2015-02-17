@@ -1,6 +1,6 @@
 webfrontend:
-    build: ./nodejs
-    #image: iojs-dev
+    # build: ./nodejs
+    image: kommunalcrowd/iojs-dev
     links:
         - db
     ports:
