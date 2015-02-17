@@ -6,3 +6,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - This CHANGELOG file.
 - A README file.
+- Docker-image for [io.js](https://iojs.org).
