@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 ### Added
+- Mount folder /config in Vagrant machine for all kinds of config files.
 ### Changed
 - Do not build iojs-dev anymore. Get kommunalcrowd/iojs-dev image.
 

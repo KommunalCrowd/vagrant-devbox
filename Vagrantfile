@@ -43,6 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # config.vm.synced_folder "../data", "/vagrant_data"
     config.vm.synced_folder "src/", "/srv/source", type: 'nfs', :mount_options => ['nolock,vers=3,udp']
     config.vm.synced_folder "docker/", "/srv/docker", type: 'nfs', :mount_options => ['nolock,vers=3,udp']
+    config.vm.synced_folder "config/", "/srv/config", type: 'nfs', :mount_options => ['nolock,vers=3,udp']
 
     # Provider-specific configuration so you can fine-tune various
     # backing providers for Vagrant. These expose provider-specific options.
