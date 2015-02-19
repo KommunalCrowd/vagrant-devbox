@@ -3,6 +3,7 @@ webfrontend:
     image: kommunalcrowd/iojs-dev
     links:
         - db
+        - prometheus
     ports:
         - "0.0.0.0:8080:8080"
     volumes:
@@ -12,3 +13,9 @@ db:
     image: mariadb
     environment:
         MYSQL_ROOT_PASSWORD: 12345
+prometheus:
+    image: prom/prometheus
+    ports:
+        - "9090:9090"
+    volumes:
+        - /srv/config/prometheus.conf:/prometheus.conf
