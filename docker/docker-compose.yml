@@ -1,8 +1,9 @@
 webfrontend:
-    build: ./nodejs
-    #image: iojs-dev
+    # build: ./nodejs
+    image: kommunalcrowd/iojs-dev
     links:
         - db
+        - prometheus
     ports:
         - "0.0.0.0:8080:8080"
     volumes:
@@ -12,3 +13,18 @@ db:
     image: mariadb
     environment:
         MYSQL_ROOT_PASSWORD: 12345
+prometheus:
+    image: prom/prometheus
+    ports:
+        - "9090:9090"
+    volumes:
+        - /srv/config/prometheus.conf:/prometheus.conf
+    links:
+        - prometheusContainerexporter
+prometheusContainerexporter:
+    image: prom/container-exporter
+    ports:
+        - "9080:9080"
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /sys/fs/cgroup:/cgroup
