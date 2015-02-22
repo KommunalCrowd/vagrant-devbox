@@ -19,3 +19,12 @@ prometheus:
         - "9090:9090"
     volumes:
         - /srv/config/prometheus.conf:/prometheus.conf
+    links:
+        - prometheusContainerexporter
+prometheusContainerexporter:
+    image: prom/container-exporter
+    ports:
+        - "9080:9080"
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /sys/fs/cgroup:/cgroup
