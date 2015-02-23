@@ -7,3 +7,4 @@ This is the development enviroment of the KommunalCrowd project. It uses Vagrant
 ## Used Containers
 - [KommunalCrowd/iojs-dev](https://registry.hub.docker.com/u/kommunalcrowd/iojs-dev/)
 - [mariadb](https://registry.hub.docker.com/_/mariadb/)
+- [tutum/influxdb](https://registry.hub.docker.com/u/tutum/influxdb/)

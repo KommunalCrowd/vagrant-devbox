@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Added
+- Container for InfluxDB.
+### Removed
+- Container for Prometheus.
+- Container for container-exporter.
 
 ## [0.2.0] - 2015-02-22
 ### Added
