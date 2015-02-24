@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Added
 - Container for InfluxDB.
+- Container for grafana.
+- Connection between InfluxDB and grafana.
 ### Removed
 - Container for Prometheus.
 - Container for container-exporter.
