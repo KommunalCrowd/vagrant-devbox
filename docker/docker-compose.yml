@@ -12,6 +12,8 @@ db:
     image: mariadb
     environment:
         MYSQL_ROOT_PASSWORD: 12345
+
+# metrics
 influxdb:
     image: tutum/influxdb
     ports:
@@ -30,3 +32,15 @@ grafana:
         - INFLUXDB_NAME=metrics
         - INFLUXDB_USER=root
         - INFLUXDB_PASS=root
+cadvisor:
+    image: google/cadvisor
+    ports:
+        - "8100:8080"
+    links:
+        - influxdb
+    volumes:
+        - /cgroup:/cgroup
+        - /:/rootfs:ro
+        - /var/run:/var/run:rw
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
