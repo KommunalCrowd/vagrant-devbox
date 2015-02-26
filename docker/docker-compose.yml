@@ -19,6 +19,8 @@ influxdb:
     ports:
         - "8083:8083"
         - "8086:8086"
+    environment:
+        PRE_CREATE_DB: "metrics"   # create dbs on startup
 grafana:
     image: tutum/grafana
     ports:
@@ -33,7 +35,7 @@ grafana:
         - INFLUXDB_USER=root
         - INFLUXDB_PASS=root
 cadvisor:
-    image: google/cadvisor
+    image: logbase/cadvisor-influxdb
     ports:
         - "8100:8080"
     links:
@@ -44,3 +46,5 @@ cadvisor:
         - /var/run:/var/run:rw
         - /sys:/sys:ro
         - /var/lib/docker/:/var/lib/docker:ro
+    environment:
+        RUN_OPTS: "-storage_driver=influxdb -storage_driver_host=influxdb:8086 -storage_driver_db=metrics -storage_driver_buffer_duration=1s"
