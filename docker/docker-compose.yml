@@ -3,7 +3,7 @@ webfrontend:
     image: kommunalcrowd/iojs-dev
     links:
         - db
-        - prometheus
+        - statsd
     ports:
         - "0.0.0.0:8080:8080"
     volumes:
@@ -13,18 +13,49 @@ db:
     image: mariadb
     environment:
         MYSQL_ROOT_PASSWORD: 12345
-prometheus:
-    image: prom/prometheus
+
+# metrics
+influxdb:
+    image: tutum/influxdb
     ports:
-        - "9090:9090"
-    volumes:
-        - /srv/config/prometheus.conf:/prometheus.conf
+        - "8083:8083"
+        - "8086:8086"
+    environment:
+        PRE_CREATE_DB: "metrics"   # create dbs on startup
+grafana:
+    image: tutum/grafana
+    ports:
+        - "8090:80"
     links:
-        - prometheusContainerexporter
-prometheusContainerexporter:
-    image: prom/container-exporter
+        - influxdb
+    environment:
+        - INFLUXDB_PROTO=http
+        - INFLUXDB_HOST=influxdb
+        - INFLUXDB_PORT=8086
+        - INFLUXDB_NAME=metrics
+        - INFLUXDB_USER=root
+        - INFLUXDB_PASS=root
+cadvisor:
+    image: logbase/cadvisor-influxdb
     ports:
-        - "9080:9080"
+        - "8100:8080"
+    links:
+        - influxdb
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - /sys/fs/cgroup:/cgroup
+        - /cgroup:/cgroup
+        - /:/rootfs:ro
+        - /var/run:/var/run:rw
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+    environment:
+        RUN_OPTS: "-storage_driver=influxdb -storage_driver_host=influxdb:8086 -storage_driver_db=metrics -storage_driver_buffer_duration=1s"
+statsd:
+    image: shakr/statsd-influxdb
+    ports:
+        - "8125:8125/udp"
+    links:
+        - influxdb
+    environment:
+        - INFLUXDB_HOST=influxdb
+        - INFLUXDB_PORT=8086
+        - INFLUXDB_DATABASE=metrics

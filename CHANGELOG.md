@@ -4,6 +4,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.3.0] - 2015-03-01
+### Added
+- Container for InfluxDB.
+- Container for grafana.
+- Connection between InfluxDB and grafana.
+- Container for cAdvisor.
+- Connection between cadvisor and InfluxDB.
+- Container for statsd.
+- Connection between statsd and InfluxDB.
+### Removed
+- Container for Prometheus.
+- Configuration-file for Prometheus.
+- Container for container-exporter.
+
 ## [0.2.0] - 2015-02-22
 ### Added
 - Mount folder /config in Vagrant machine for all kinds of config files.
