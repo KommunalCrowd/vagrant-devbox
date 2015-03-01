@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Connection between statsd and InfluxDB.
 ### Removed
 - Container for Prometheus.
+- Configuration-file for Prometheus.
 - Container for container-exporter.
 
 ## [0.2.0] - 2015-02-22
