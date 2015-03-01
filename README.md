@@ -10,3 +10,4 @@ This is the development enviroment of the KommunalCrowd project. It uses Vagrant
 - [tutum/influxdb](https://registry.hub.docker.com/u/tutum/influxdb/)
 - [tutum/grafana](https://registry.hub.docker.com/u/tutum/grafana/)
 - [logbase/cadvisor-influxdb](https://registry.hub.docker.com/u/logbase/cadvisor-influxdb/)
+- [shakr/statsd-influxdb](https://registry.hub.docker.com/u/shakr/statsd-influxdb/)

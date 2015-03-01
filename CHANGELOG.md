@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Connection between InfluxDB and grafana.
 - Container for cAdvisor.
 - Connection between cadvisor and InfluxDB.
+- Container for statsd.
+- Connection between statsd and InfluxDB.
 ### Removed
 - Container for Prometheus.
 - Container for container-exporter.

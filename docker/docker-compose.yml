@@ -3,6 +3,7 @@ webfrontend:
     image: kommunalcrowd/iojs-dev
     links:
         - db
+        - statsd
     ports:
         - "0.0.0.0:8080:8080"
     volumes:
@@ -48,3 +49,13 @@ cadvisor:
         - /var/lib/docker/:/var/lib/docker:ro
     environment:
         RUN_OPTS: "-storage_driver=influxdb -storage_driver_host=influxdb:8086 -storage_driver_db=metrics -storage_driver_buffer_duration=1s"
+statsd:
+    image: shakr/statsd-influxdb
+    ports:
+        - "8125:8125/udp"
+    links:
+        - influxdb
+    environment:
+        - INFLUXDB_HOST=influxdb
+        - INFLUXDB_PORT=8086
+        - INFLUXDB_DATABASE=metrics
