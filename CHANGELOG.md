@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.3.1] - 2015-03-01
+### Fixed
+- Fix problems with level 3 headers in CHANGELOG.
+
 ## [0.3.0] - 2015-03-01
 ### Added
 - Container for InfluxDB.
@@ -13,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Connection between cadvisor and InfluxDB.
 - Container for statsd.
 - Connection between statsd and InfluxDB.
+
 ### Removed
 - Container for Prometheus.
 - Configuration-file for Prometheus.
@@ -23,6 +28,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Mount folder /config in Vagrant machine for all kinds of config files.
 - Container for Prometheus in docker-compose.
 - Container for container-exporter in docker-compose.
+
 ### Changed
 - Do not build iojs-dev anymore. Get kommunalcrowd/iojs-dev image.
 
