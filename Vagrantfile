@@ -63,6 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     #
     config.vm.provision "shell", path: "provision.sh"
+    config.vm.provision "shell", path: "always-provision.sh", run: "always"
     #
     # View the documentation for the provider you're using for more
     # information on available options.
